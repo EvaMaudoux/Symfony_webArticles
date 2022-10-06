@@ -1,0 +1,17 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container">
+        <h3 class="display-5">Ajouter un article</h3>
+        <div class="row">
+            <div class="col-md-8">
+                {{ form(form) }}
+            </div>
+            <form action="{{ path('newCategory') }}">
+                <input type="submit" value="Nouvelle catégorie">
+            </form>
+        </div>
+    </main>
+
+
+{% endblock %}

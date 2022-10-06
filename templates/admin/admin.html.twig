@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <main class="container">
+        <section id="posts">
+            <div class="row">
+                <h2 class="display-4 my-4">Administration <a href="{{ path('new') }}"><i class="icofont-plus"></i></a></h2>
+            </div>
+            <div class="col-md-10 offset-1">
+                <table class="table table-hover "> {# classe boodstrap pour les tables #}
+
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Date de création</th>
+                        <th>Catégorie</th>
+                        <th><i class="icofont-ui-delete"></i>   </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <td><img src="{{ asset('/img/posts/' ~ post.image) }}" alt="{{ post.title }}" class="img-post"></td> {# altgr + = #}
+                            <td><a href="{{ path('post', {id:post.id}) }}">{{ post.title | capitalize }}</a></td>
+                            <td>{{ post.createdAt|date('d/m/Y') }}</td>
+                            <td>{{ post.category.name }}</td>
+                            <td><a href="{{ path('delete', {id:post.id}) }}"><i class="icofont-ui-delete"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
