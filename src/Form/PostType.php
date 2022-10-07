@@ -26,14 +26,13 @@ class PostType extends AbstractType
             ])
             ->add('isPublished', ChoiceType::class, [
                 'label' => 'Afficher',
-                'choices' => ['Oui' => 1, 'Non' => 0]
+                'choices' => ['Oui' => 1, 'Non' => 0],
+                'placeholder' => 'Sélectionnez...',
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label'  => 'name',
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter l\'article'
+                'placeholder' => 'Sélectionnez...',
             ])
         ;
     }

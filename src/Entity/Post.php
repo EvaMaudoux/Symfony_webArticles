@@ -5,8 +5,15 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+#[UniqueEntity(
+    fields: ['title'],
+    message: 'Ce titre existe déjà',
+    )]
+
 class Post
 {
     #[ORM\Id]
@@ -14,9 +21,11 @@ class Post
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(min: 2,minMessage: 'Votre titre doit contenir au minimum {{ limit }} caractères',)]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[Assert\Length( min: 10, minMessage: 'Votre contenu doit contenir au minimum {{ limit }} caractères',)]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 

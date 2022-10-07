@@ -2,16 +2,14 @@
 
 {% block body %}
     <main class="container">
-        <h3 class="display-5">Ajouter un article</h3>
+        <h3 class="display-5 my-3">Ajouter un article</h3>
         <div class="row">
-            <div class="col-md-8">
-                {{ form(form) }}
+            <div class="col-md-8 offset-1">
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-outline-secondary">Ajouter l'article</button>
+                {{ form_end(form) }}
             </div>
-            <form action="{{ path('newCategory') }}">
-                <input type="submit" value="Nouvelle catégorie">
-            </form>
         </div>
     </main>
-
-
 {% endblock %}
